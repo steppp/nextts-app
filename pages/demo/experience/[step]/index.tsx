@@ -2,9 +2,9 @@ import { useRouter } from "next/router"
 
 const ExperienceStep = () => {
     const router = useRouter()
-    const { slug } = router.query
+    const { step } = router.query
 
-    return <h1>{ slug }</h1>
+    return <h1>Experience step: { step }</h1>
 }
 
 export default ExperienceStep
