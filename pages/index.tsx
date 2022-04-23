@@ -63,7 +63,7 @@ export default Home
 export const getStaticProps: GetStaticProps = async (context) => {
   // running on the server, we can directly call `getPageData`
   const pageDataString = await getPageData({ for: 'home' })
-  const pageData = JSON.parse(pageDataString)
+  const pageData: PageContents<HomeContents> = JSON.parse(pageDataString)
 
   return {
     props: { 
