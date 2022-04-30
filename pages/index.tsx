@@ -5,12 +5,14 @@ import Card, { CardContent } from '../src/components/Card/Card'
 import styles from '../styles/Home.module.css'
 import { getPageData } from '../pages/api/page/data'
 import { PageContents } from './_app'
+import SlideFade from '../src/animations/SlideFade'
+import Link from 'next/link'
 
 type HomeContents = {
   cards: CardContent[]
 }
 
-const Home = ({pageData} : { pageData: PageContents<HomeContents>}) => {
+const Home = ({ pageData }: { pageData: PageContents<HomeContents> }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,25 +22,34 @@ const Home = ({pageData} : { pageData: PageContents<HomeContents>}) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.ts!</a>
-        </h1>
+        <SlideFade>
+          <h1 className={styles.title}>
+            Welcome to <a href="https://nextjs.org">Next.ts!</a>
+          </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+          <p className={styles.description}>
+            Get started by editing{' '}
+            <code className={styles.code}>pages/index.tsx</code>
+          </p>
 
-        <div className={styles.grid}>
-          {pageData?.contents?.cards && pageData.contents.cards.map((card, i) => (
-            <Card key={i}>
-              <a href={card.link}>
-                <h2>{card.title}</h2>
-                <p>{card.description}</p>
-              </a>
+          <div className={styles.grid}>
+            {pageData?.contents?.cards && pageData.contents.cards.map((card, i) => (
+              <Card key={i}>
+                <a href={card.link}>
+                  <h2>{card.title}</h2>
+                  <p>{card.description}</p>
+                </a>
+              </Card>
+            ))}
+            <Card key={'customCard'}>
+              <Link href={'/demo/form/page0'}>
+                <a>
+                  page0
+                </a>
+              </Link>
             </Card>
-          ))}
-        </div>
+          </div>
+        </SlideFade>
       </main>
 
       <footer className={styles.footer}>
@@ -66,7 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pageData: PageContents<HomeContents> = JSON.parse(pageDataString)
 
   return {
-    props: { 
+    props: {
       pageData
     }
   }

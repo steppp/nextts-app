@@ -1,4 +1,4 @@
-import { Component } from "react";
+import IComponentProps from "../common/ComponentProps.interface";
 import { StyledPrimaryCard } from "./styled";
 
 export type CardContent = {
@@ -8,9 +8,7 @@ export type CardContent = {
     image: string | undefined
 }
 
-type CardProps = { 
-    children: React.ReactNode
-}
+interface CardProps extends IComponentProps { }
 
 const Card = ({ children }: CardProps) => {
     return <StyledPrimaryCard>
